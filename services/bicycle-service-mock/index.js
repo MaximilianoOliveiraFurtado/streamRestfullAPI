@@ -18,8 +18,12 @@ function bicycleService () {
   }
 
   async function get (id, cb) {
-    const bicycleGet = await got(`${bicycleSrv}/${id}`).json()
-    setImmediate(() => cb(null, bicycleGet))
+    try {
+      const bicycleGet = await got(`${bicycleSrv}/${id}`).json()
+      setImmediate(() => cb(null, bicycleGet))
+    } catch (err) {
+      setImmediate(() => cb(err))
+    }
   }
 
 }

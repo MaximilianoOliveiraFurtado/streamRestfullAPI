@@ -18,8 +18,12 @@ function brandService () {
   }
 
   async function get (id, cb) {
-    const brand = await got(`${brandSrv}/${id}`).json()
-    setImmediate(() => cb(null, brand))
+    try {
+      const brand = await got(`${brandSrv}/${id}`).json()
+      setImmediate(() => cb(null, brand))
+    } catch (err) {
+      setImmediate(() => cb(err))
+    }
   }
 
 }
